@@ -4,14 +4,14 @@ import {Component} from 'react';
 
 // import logo from './logo.svg';
 import './App.css';
-import './InputComponent';
-import InputComponent from './InputComponent';
+import CardList from './components/card-list/card-list.component';
+import SearchBox from './components/search-box/search-box.component';
 
 class App extends Component {
 
   constructor(){ // whenever you write constructor you write super.React component will run this constructor method before anything else.
     super();
-    console.log('constructor');
+    console.log('constructor-App');
     // this.state = {
     //   name:'Abhishek'
     // }
@@ -59,7 +59,7 @@ class App extends Component {
   }
 // Mount is when first time component gets placed on DOM.
   componentDidMount(){
-    console.log('componentDIdMount')
+    // console.log('componentDIdMount');
     // Make the api request as soon as the component gets mounted.when the react renders the component.
     // we use native fetch() to make API request.
     fetch('https://jsonplaceholder.typicode.com/users') // this is going to be a PROMISE , which is asynchronous is Javascript.It's essentially a promise that eventually i'm going to have a value.
@@ -68,14 +68,15 @@ class App extends Component {
         () => {
           return { monsters:users}
         },
-        ()=>{
-          console.log(this.state)
-        }));
+        // ()=>{
+        //   // console.log(this.state)
+        // }
+      ));
   }
 
   // optimization - component initialized the function once instead of creating function for every event trigger when the function is in onchange = ...
   onSearchChange = (event)=>{
-    console.log(event.target.value)
+    // console.log(event.target.value)
     const searchString = event.target.value.toLowerCase();
     this.setState(()=>{
       return {
@@ -91,19 +92,25 @@ class App extends Component {
 // Optimization
     const {monsters , searchString} =this.state;
     const {onSearchChange} = this;
-    console.log('render');
+    console.log('render-App.js');
     const filteredMonsters = monsters.filter(
       (monster)=>{
         return monster.name.toLowerCase().includes(searchString);
       }
     );
+
     return (
       
       <div className="App">
 
-        <input className='search-box' type='search' placeholder='search for users' onChange={onSearchChange}/>
+        <h1 className='app-title'> Monster's Rolodex </h1>
+
+        {/* <input className='search-box' type='search' placeholder='search for users' onChange={onSearchChange}/> */}
+        <SearchBox onChangeHandler={onSearchChange} placeholder='Search for MonstersYo' className='search-box'/>
         <br/>
-        {<InputComponent/>}
+        {/* {<CardList monsters='Me the Monster' anything={['a','z']}/>} */}
+        {<CardList monsters={filteredMonsters}/>}
+        {/* {<InputComponent/>} */}
 
         {/* Not a effiecient way - what if we have 1000 monsters?  
         <h1> {this.state.monster1.name}</h1>
@@ -119,11 +126,13 @@ class App extends Component {
           // The provided function (callback) is executed on each element of the original array, and the return value of each execution becomes the corresponding element in the new array.
         } */}
 
-        {
+        {/* {
           filteredMonsters.map((monster) => {
             return <h1 key={monster.id}> {monster.name} </h1>
           })
-        }
+        } */}
+
+        
 
       </div>
       // <div className="App">

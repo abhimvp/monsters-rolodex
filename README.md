@@ -93,4 +93,9 @@ when we are writing react , we're going to write either in class components or f
 Inside of jsx , react actually allows you to bind event handlers on to any HTML element. `eg: <button onClick={javascript code - expects a function/callbackFunction - () => {this.setState({name:'Hola Amigoo'})}}>` Event handlers is that i want to happen whenver an event happens. 
 `read through app.js file comments to understand the usage of setState`
 
-why react application as a SPA(Single Page Applications) makes it whole lot easier? -> 
+why react application as a SPA(Single Page Applications) makes it whole lot easier? -> google it
+
+Understanding the concept of components: We know that a component is meant to tie together functionality & visual representation of our User Interface.But it also aims to do is to `tie together re-usable portions of the code together into one segment(as a component).` That's the idea of components , you want to try and figure out if when you're creating a component , you can generacize the functionality of that component as much as possible so it becomes as resuable as possible.By thinking that way you don't have tp rewrite a lot of code.The idea of single responsibility.
+
+Components re-render based on two conditions , when setState gets called & when props are updated.
+How css works in react ? ->  css styles files apply to the entire website. no need to create separate css files for each component.
