@@ -99,3 +99,21 @@ Understanding the concept of components: We know that a component is meant to ti
 
 Components re-render based on two conditions , when setState gets called & when props are updated.
 How css works in react ? ->  css styles files apply to the entire website. no need to create separate css files for each component.
+
+
+`Functional Components` utilize `hooks` inorder to replicate very similar behavior to class components.
+They differ in how react uses to re-render.
+A Functional component typically takes form of a arrow function. `const App = () => {  return ();   }`. Also there are no lifecycle methods as we have in class components. Here we have `functions and sideeffects`. To understand sideffects? we need to know `pure functions and impure functions.`
+what a `pure function should do` is to return the exact same thing , no matter how many times it gets called.When it's given the same arguments. `const pureFunc = (a,b) = { return a+b; }`. A function is considered pure when everything that dictates what it returns is completely isolated from what gets passed into it.This functions return should solely be dependent on the props being passed in.
+-> Another thing that your function should not do for it to be considered a pure function is `produce side effects.`
+A side effect is when a function creates some kind of effect outside of it scope. example c=3 and const funcA = (a,b) = {
+    c=a+b
+    return a * b;
+} Here the function is pure yet the  variable which is out of scope of the function is being affected in the function that is called as sideeffect. impure function is when return a*b+c ; here c changes the return value everytime c value changes.
+In react what you're going write will be impure functions.
+We're going to use Hooks to create impure functions & we will be generating side effects.
+* useState Hook essentially gives us the ability to encapsulate local state in a functional component. we will use array destructuring from useState const [] = useState(); , because use state gives us back an array of two values. Array destructing what it does is it allows us to assign variables to values inside of an array. ex: const arr = [2,4] /n const [a,b] = arr , here a gets assigned with value 2 and b with 4. here with useState we will have [value,setValue].Each hook only hooks into one value. if we have multiple values we need multiple useState hooks for each.
+Whenever state changes it will re-run the entire component.
+Any fetch call is a sideEffect and we need to use useEffect.
+* The useEffect hook takes two arguments. First is callback function () => {} & second is array of dependencies [] -> useEffect(()=>{},[]).
+& The callback is going to be the code or the effect that we want to happen inside of our functional component.Second Array contains different dependencies.These might going to be state values or prop values passed to the component. What this array says is that whenver the values inside of this dependencies change is when i'm going to run useEffect callback function. It's going to run the callback function the very first time the entire code gets run.
